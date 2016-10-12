@@ -22,7 +22,7 @@ public static class InputEx
 
         for (int i = 0; i < keyLength; i++)
         {
-            if (Input.GetKey(keys[i]) == false)
+            if (!Input.GetKey(keys[i]))
             {
                 return false;
             }
