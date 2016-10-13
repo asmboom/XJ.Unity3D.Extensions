@@ -1,35 +1,38 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Input の拡張メソッドやユーティリティメソッドを実装します。
-/// </summary>
-public static class InputEx
+namespace XJ.Unity3D.Extensions
 {
-    #region Method
-
     /// <summary>
-    /// キーコンビネーションが入力されたかどうかを判定します。
+    /// Input の拡張メソッドやユーティリティメソッドを実装します。
     /// </summary>
-    /// <param name="keys">
-    /// キーコンビネーションのキー。ただし最後に指定するキー以外入力順を考慮しません。
-    /// </param>
-    /// <returns>
-    /// 最後のキーが入力されたときに true, それ以外のとき false
-    /// </returns>
-    public static bool GetKeyDownCombination(params KeyCode[] keys)
+    public static class InputEx
     {
-        int keyLength = keys.Length - 1;
+        #region Method
 
-        for (int i = 0; i < keyLength; i++)
+        /// <summary>
+        /// キーコンビネーションが入力されたかどうかを判定します。
+        /// </summary>
+        /// <param name="keys">
+        /// キーコンビネーションのキー。ただし最後に指定するキー以外入力順を考慮しません。
+        /// </param>
+        /// <returns>
+        /// 最後のキーが入力されたときに true, それ以外のとき false.
+        /// </returns>
+        public static bool GetKeyDownCombination(params KeyCode[] keys)
         {
-            if (!Input.GetKey(keys[i]))
+            int keyLength = keys.Length - 1;
+
+            for (int i = 0; i < keyLength; i++)
             {
-                return false;
+                if (!Input.GetKey(keys[i]))
+                {
+                    return false;
+                }
             }
+
+            return Input.GetKeyDown(keys[keyLength]);
         }
 
-        return Input.GetKeyDown(keys[keyLength]);
+        #endregion Method
     }
-
-    #endregion Method
 }

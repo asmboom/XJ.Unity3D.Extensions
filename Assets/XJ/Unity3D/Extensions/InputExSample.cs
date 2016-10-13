@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using XJ.Unity3D.Extensions;
 
 public class InputExSample : MonoBehaviour
 {
