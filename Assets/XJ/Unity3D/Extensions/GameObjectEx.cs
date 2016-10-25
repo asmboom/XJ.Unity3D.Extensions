@@ -36,5 +36,27 @@ namespace XJ.Unity3D.Extensions
                 GameObject.DestroyImmediate(components[i]);
             }
         }
+
+        /// <summary>
+        /// MaterialPropertyBlock を利用して "_Color" の値を設定します。
+        /// </summary>
+        /// <param name="self">
+        /// GameObject.
+        /// </param>
+        /// <param name="color">
+        /// "_Color" に設定する色。
+        /// </param>
+        public static void SetColor(this GameObject self, Color color)
+        {
+            MaterialPropertyBlock materialPropertyBlock = new MaterialPropertyBlock();
+
+            Renderer renderer = self.GetComponent<Renderer>();
+
+            renderer.GetPropertyBlock(materialPropertyBlock);
+
+            materialPropertyBlock.SetColor("_Color", color);
+
+            renderer.SetPropertyBlock(materialPropertyBlock);
+        }
     }
 }
